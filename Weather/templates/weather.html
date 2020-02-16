@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+        <div class="col-sm-4 text-center" >
+            <h1>Weather Player</h1>
+            <!-- changing weather image -->
+            <img src="{{ Weather_img }}" alt="test image">
+            <!--tempature apears here-->
+            <h1>{{ temp }} in {{ location }}</h1>
+            <!--Audio player is here -->
+            <audio controls src="{{ Song }}" type="audio/mp3"></audio>
+        </div>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+        <div class="col-sm-4 text-center">
+            <h1>Weather Player</h1>
+            <img src="{{ url_for('static', filename='WeatherIMG/logo.jpg') }}" class="img-responsive center-block logo-img" alt="Responsive image">
+            <form action="/home" method="POST">
+                <div class="form-group">
+                    <label for="zipcode">Please enter your zipcode</label>                    
+                    <br>
+                    <input  id="zipcode" class="form-control center-block" name="zipcode" type="text" placeholder="Zipcode" maxlength="5" pattern="\d{5}" required>
+                </div>
+                <button class="btn btn-primary" type="submit">ENTER</button>     
+            </form>
+        </div>
+{% endblock content %}
