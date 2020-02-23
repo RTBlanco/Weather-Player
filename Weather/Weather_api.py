@@ -43,10 +43,7 @@ def check_zip(zip_code):
 
     full_url = f'{Base_url}zip={zip_code},{country_code}&units=imperial&appid={api_key}'
     x = requests.get(full_url).json()
-    if x.get('cod') == 200:
-        return True
-    else:
-        raise SyntaxError
+    return x['cod']
 
 
 conditions = {'group1':['clear sky','few clouds'],'group2':['scattered clouds','broken clouds','shower rain'],'group3':['rain','thunderstorm'],'group4':['snow','mist']}

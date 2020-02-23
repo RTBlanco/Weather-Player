@@ -1,15 +1,33 @@
 {% extends "layout.html" %}
 {% block content %}
-        <div class="col-sm-4 text-center">
+        <div id="middle" class="col-sm-4 text-center">
             <h1>Weather Player</h1>
             <img src="{{ url_for('static', filename='WeatherIMG/logo.jpg') }}" class="img-responsive center-block logo-img" alt="Responsive image">
             <form action="/home" method="POST">
+                {{ form.hidden_tag() }}
                 <div class="form-group">
+                    {{ form.zipcode.label }}
+                    <br>
+                    {{ form.zipcode(id="txtbox", pattern="\d{5}", placeholder="zipcode", title="Valid zip code only!") }}
+                </div>
+                {% if form.zipcode.errors %}
+                    <ul style="color: red;"">
+                    {% for errors in form.zipcode.errors %}
+                        <li style="padding-right: 37px;">{{errors}}</li>
+                    {% endfor %}
+                    </ul>
+                    <script>
+                        var txtbox = document.querySelector("#txtbox");
+                        txtbox.style.border = "3px solid red";
+                    </script>
+                {% endif %}
+                {{ form.submit(class="btn btn-primary") }}
+               <!-- <div class="form-group">
                     <label for="zipcode">Please enter your zipcode</label>                    
                     <br>
                     <input  id="zipcode" class="form-control center-block" name="zipcode" type="text" placeholder="Zipcode" maxlength="5" pattern="\d{5}" required>
                 </div>
-                <button class="btn btn-primary" type="submit">ENTER</button>     
+                <button class="btn btn-primary" type="submit">ENTER</button> -->
             </form>
         </div>
 {% endblock content %}

@@ -1,4 +1,5 @@
 from Weather import app
+from Weather.forms import Myform
 from Weather.Weather_api import get_temp, get_description, get_LocalName, get_icon, conditions
 from flask import render_template, send_from_directory, url_for, request, redirect
 
@@ -7,11 +8,14 @@ from flask import render_template, send_from_directory, url_for, request, redire
 @app.route('/')
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-    if request.method == 'POST':
-        zipcode = request.form.get('zipcode')  
+    # if request.method == 'POST':
+    #     zipcode = request.form.get('zipcode')  
         # TODO: ADD for validation !    
+    form = Myform()
+    if form.validate_on_submit():
+        zipcode = request.form.get('zipcode')
         return  redirect(url_for('weather', zipcode=zipcode))
-    return render_template('home.html')
+    return render_template('home.html', form=form)
 
 
 @app.route('/weather')
